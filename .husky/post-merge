@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/\_/husky.sh"
+
+if ! git diff HEAD^ HEAD --exit-code -- ./package.json; then
+  echo ":::::::: Run script npm install ::::::::" > ./log/post-merge.txt
+  npm install // or todo something
+fi
