@@ -1,10 +1,16 @@
 #!/bin/bash
 
-echo "::: Run Pull Start :::" # optional
+echo "::: Run Pull Start :::"
 
 cd /var/www/crontab-test
 git pull origin develop # or other branch
 
-echo "::: Run Pull End :::" # optional
+if ! git diff HEAD^ HEAD --exit-code -- ./package.json; then
+    echo ":::::::: Run script npm install ::::::::"
+    npm install 
+    # or todo something
+fi
+
+echo "::: Run Pull End :::" #
 
 
